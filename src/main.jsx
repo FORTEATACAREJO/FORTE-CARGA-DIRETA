@@ -1,1 +1,4 @@
-import{StrictMode}from"react";import{createRoot}from"react-dom/client";import App from"./App.jsx";import"./styles.css";createRoot(document.getElementById("root")).render(<StrictMode><App/></StrictMode>);
+import {startAccess} from "./access-standard.js";
+import{StrictMode}from"react";import{createRoot}from"react-dom/client";import App,{supabase} from"./App.jsx";import"./styles.css";if(supabase)startAccess({client:supabase,app:"carga-direta",content:document.getElementById("root")}).ready.then(()=>createRoot(document.getElementById("root")).render(<StrictMode><App/></StrictMode>));
+else document.getElementById("root").textContent="Conexão não configurada. Contate o administrador.";
+
