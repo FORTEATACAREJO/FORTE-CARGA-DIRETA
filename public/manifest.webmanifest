@@ -1,1 +1,18 @@
-{"name":"Forte Carga Direta — Cargas e Pedidos","short_name":"Carga Direta","id":"/","start_url":"/","display":"standalone","background_color":"#f6f7fa","theme_color":"#8e0b0b","icons":[]}
+{
+  "name": "Forte Carga Direta — Cargas e Pedidos",
+  "short_name": "Carga Direta",
+  "id": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#123963",
+  "icons": [
+    {
+      "src": "https://site-forte-atacarejo.onrender.com/central/icons/carga-direta-aprovado-320.png",
+      "sizes": "320x320",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "scope": "/"
+}
