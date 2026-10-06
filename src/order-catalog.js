@@ -20,7 +20,7 @@ export function purchaseDefaults(data,form,patch={}){
 export function saleDefaults(data,form,clienteId){
  const c=data.clientes.find(x=>x.id===clienteId),condition=c?.condicaoPagamento||'',numeric=/\d/.test(condition);
  const method=c?.formaPagamento||(/PIX/i.test(condition)?'PIX':/DINHEIRO/i.test(condition)?'DINHEIRO':numeric?'BOLETO':'PIX');
- return {...form,clienteId,destino:address(c),obra:'',vendedorId:data.vendedores.some(x=>x.id===c?.vendedorResponsavelId)?c.vendedorResponsavelId:'',formaPagamento:method,condicaoPagamento:numeric?condition:'14 DIAS',fretePorTon:c?.fretePorTon!=null?String(c.fretePorTon):'140',precoUnitario:salePrice(data,clienteId,form.produtoId)};
+ return {...form,clienteId,email:c?.email||'',whatsapp:c?.whatsapp||c?.telefone||'',destino:address(c),obra:'',vendedorId:data.vendedores.some(x=>x.id===c?.vendedorResponsavelId)?c.vendedorResponsavelId:'',formaPagamento:method,condicaoPagamento:numeric?condition:'14 DIAS',fretePorTon:c?.fretePorTon!=null?String(c.fretePorTon):'140',precoUnitario:salePrice(data,clienteId,form.produtoId)};
 }
 export function palletSuggestion(data,produtoId,qtd){const p=data.produtos.find(x=>x.id===produtoId);const per=Number(p?.qtdPorPallet)||({50:40,40:50,20:100}[Number(p?.pesoKg)]||0);return per&&Number(qtd)>0?String(Math.ceil(Number(qtd)/per)):'';}
 export function withPallets(data,form,patch){const next={...form,...patch};if(next.pallet==='SEM PALLETS')next.palletQuantidade='0';else if(next.pallet&&['qtd','produtoId','pallet'].some(k=>Object.hasOwn(patch,k)))next.palletQuantidade=palletSuggestion(data,next.produtoId,next.qtd);return next;}
